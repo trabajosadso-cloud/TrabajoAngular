@@ -1,0 +1,29 @@
+<div class="home-container">
+ <h1>Bienvenido a BookShelf</h1>
+ <p class="subtitle">Tu gestor personal de libros</p>
+ <div class="stats-cards">
+   <div class="card">
+     <span class="card-number">{{ bookService.totalBooks() }}</span>
+     <span class="card-label">Libros totales</span>
+  </div>
+  <div class="card">
+    <span class="card-number">{{ bookService.availableBooks() }}</span>
+    <span class="card-label">Disponibles</span>
+  </div>
+  <div class="card">
+    <span class="card-number">{{ bookService.averageRating() }}</span>
+    <span class="card-label">Rating promedio</span>
+  </div>
+</div>
+<div class="actions">
+  <a routerLink="/libros" class="btn btn-primary">
+    Ver catálogo
+  </a>
+  <a routerLink="/agregar" class="btn btn-secondary">
+    Agregar libro
+  </a>
+  <a routerLink="/estadisticas" class="btn btn-outline">
+    Estadísticas
+  </a>
+</div>
+</div>
