@@ -5,10 +5,27 @@
 </div>
 <nav>
 <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+@if (authService.isAuthenticated()) {
 <a routerLink="/libros" routerLinkActive="active">Catálogo</a>
+@if (authService.isEditorOrAbove()) {
 <a routerLink="/agregar" routerLinkActive="active">Agregar</a>
+}
 <a routerLink="/estadisticas" routerLinkActive="active">Stats</a>
+}
 </nav>
+<div class="user-area">
+@if (authService.isAuthenticated()) {
+<span class="user-info">
+{{ authService.displayName() }}
+<small>({{ authService.roleName() }})</small>
+</span>
+<button (click)="authService.logout()" class="btn-logout">
+Cerrar sesión
+</button>
+} @else {
+<a routerLink="/login" class="btn-login-nav">Iniciar sesión</a>
+}
+</div>
 </header>
 <main>
 <router-outlet />
