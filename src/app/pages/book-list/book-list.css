@@ -1,0 +1,21 @@
+.catalog { padding: 20px; }
+h2 { color: #1a237e; margin-bottom: 16px; }
+.filters { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.search-input { flex: 1; min-width: 220px; padding: 10px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
+.search-input:focus { border-color: #1565c0; outline: none; box-shadow: 0 0 0 2px rgba(21,101,192,0.2); }
+ select { padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+.results-count { color: #666; font-size: 13px; margin-bottom: 16px; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.book-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);  border-left: 4px solid #1565c0; transition: transform 0.2s; }
+.book-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+.book-card.unavailable { opacity: 0.6; border-left-color: #999; }
+.book-genre { display: inline-block; background: #e3f2fd; color: #1565c0; padding: 2px 10px; border-radius: 
+12px; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+h3 { color: #212121; margin-bottom: 4px; }
+.book-author { color: #666; font-size: 14px; margin-bottom: 8px; }
+.book-rating .filled { color: #f9a825; }
+.book-actions { display: flex; gap: 8px; margin-top: 12px; }
+.btn-detail { background: #1565c0; color: white; padding: 6px 14px; border-radius: 6px; font-size: 13px; text-decoration: none; }
+.btn-toggle { background: #f5f5f5; color: #333; padding: 6px 14px; border-radius: 6px; font-size: 13px; 
+   border: 1px solid #ddd; cursor: pointer; }
+.empty { color: #999; text-align: center; padding: 40px; font-style: italic; grid-column: 1 / -1; }

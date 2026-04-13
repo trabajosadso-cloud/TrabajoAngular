@@ -1,1 +1,38 @@
-<p>add-book works!</p>
+<div class="form-container">
+<h2>Agregar Nuevo Libro</h2>
+<div class="form">
+<div class="field">
+<label>Título:</label>
+<input [value]="title()" (input)="title.set($any($event.target).value)" />
+</div>
+<div class="field">
+<label>Autor:</label>
+<input [value]="author()" (input)="author.set($any($event.target).value)" />
+</div>
+<div class="field-row">
+<div class="field">
+<label>Año:</label>
+<input type="number" [value]="year()" (input)="year.set(+$any($event.target).value)" />
+</div>
+<div class="field">
+<label>Género:</label>
+<select [value]="genre()" (change)="genre.set($any($event.target).value)">
+<option value="Ficción">Ficción</option>
+<option value="Técnico">Técnico</option>
+<option value="Historia">Historia</option>
+<option value="Ciencia">Ciencia</option>
+</select>
+</div>
+<div class="field">
+<label>Rating (1-5):</label>
+<input type="number" min="1" max="5"
+[value]="rating()" (input)="rating.set(+$any($event.target).value)" />
+</div>
+</div>
+<div class="field">
+<label>Descripción:</label>
+<textarea rows="3" [value]="description()"
+(input)="description.set($any($event.target).value)"></textarea>
+<button (click)="submit()" class="btn-submit">Agregar libro</button>
+</div>
+</div>

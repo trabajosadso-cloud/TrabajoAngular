@@ -1,1 +1,49 @@
-<p>book-detail works!</p>
+@if (bookExists()) {
+  <div class="detail-container">
+    <a routerLink="/libros" class="back-link">← Volver al catálogo</a>
+    <div class="detail-card">
+      <div class="detail-header">
+        <span class="genre-tag">{{ book()!.genre }}</span>
+        <span class="availability" [class.available]="book()!.available">
+          {{ book()!.available ? 'Disponible' : 'No disponible' }}
+        </span>
+      </div>
+
+      <h1>{{ book()!.title }}</h1>
+      <p class="author">por {{ book()!.author }} · {{ book()!.year }}</p>
+
+      <div class="rating">
+        @for (star of [1, 2, 3, 4, 5]; track star) {
+          <span [class.filled]="star <= book()!.rating">*</span>
+        }
+        <span class="rating-text">({{ book()!.rating }}/5)</span>
+      </div>
+
+      <p class="description">{{ book()!.description }}</p>
+
+      <div class="actions">
+        <button (click)="toggleAvailability()" class="btn-toggle">
+          {{ book()!.available ? 'Marcar no disponible' : 'Marcar disponible' }}
+        </button>
+        <button (click)="deleteAndGoBack()" class="btn-delete">Eliminar libro</button>
+      </div>
+    </div>
+
+    @if (relatedBooks().length > 0) {
+      <div class="related-section">
+        <h3>Otros libros de {{ book()!.genre }}</h3>
+        @for (related of relatedBooks(); track related.id) {
+          <a [routerLink]="['/libros', related.id]" class="related-link">
+            {{ related.title }} — {{ related.author }}
+          </a>
+        }
+      </div>
+    }
+  </div>
+} @else {
+  <div class="not-found">
+    <h2>Libro no encontrado</h2>
+    <p>El libro con ID {{ bookId() }} no existe en el catálogo.</p>
+    <a routerLink="/libros" class="btn-back">Ir al catálogo</a>
+  </div>
+}

@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
-import { Book } from '../models/book.models';
+import { Book } from '../models/book.model';
 
 @Injectable({ providedIn: 'root' })
 export class BookService {

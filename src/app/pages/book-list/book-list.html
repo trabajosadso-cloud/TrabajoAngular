@@ -1,1 +1,53 @@
-<p>book-list works!</p>
+<div class="catalog">
+ <h2>Catálogo de Libros</h2>
+ <!-- Filtros -->
+ <div class="filters">
+   <input
+     [value]="bookService.searchTerm()"
+     (input)="bookService.searchTerm.set($any($event.target).value)"
+      placeholder="Buscar por título o autor..."
+      class="search-input"
+    />
+    <select
+      [value]="bookService.genreFilter()"
+      (change)="bookService.genreFilter.set($any($event.target).value)">
+      <option value="">Todos los géneros</option>
+      @for (genre of bookService.genres(); track genre) {
+        <option [value]="genre">{{ genre }}</option>
+      }
+    </select>
+  </div>
+
+  <p class="results-count">
+    {{ bookService.filteredBooks().length }} de {{ bookService.totalBooks() }} libros
+  </p>
+
+  <!-- Lista de libros -->
+  <div class="book-grid">
+    @for (book of bookService.filteredBooks(); track book.id) {
+      <div class="book-card" [class.unavailable]="!book.available">
+        <div class="book-genre">{{ book.genre }}</div>
+        <h3>{{ book.title }}</h3>
+        <p class="book-author">{{ book.author }} ({{ book.year }})</p>
+        <div class="book-rating">
+          @for (star of [1,2,3,4,5]; track star) {
+            <span [class.filled]="star <= book.rating">*</span>
+          }
+        </div>
+        <div class="book-actions">
+          <!-- routerLink dinámico con el ID del libro -->
+          <a [routerLink]="['/libros', book.id]" class="btn-detail">
+            Ver detalle
+          </a>
+          <button
+            (click)="bookService.toggleAvailability(book.id)"
+            class="btn-toggle">
+            {{ book.available ? 'Marcar no disponible' : 'Marcar disponible' }}
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <p class="empty">No se encontraron libros con esos filtros.</p>
+    }
+  </div>
+</div>

@@ -1,1 +1,51 @@
-<p>stats works!</p>
+<div class="stats-container">
+<h2>Estadísticas de la Biblioteca</h2>
+<div class="stat-grid">
+<div class="stat-card blue">
+<span class="stat-number">{{ totalBooks() }}</span>
+<span class="stat-label">Total de libros</span>
+</div>
+<div class="stat-card green">
+<span class="stat-number">{{ availableBooks() }}</span>
+<span class="stat-label">Disponibles</span>
+</div>
+<div class="stat-card orange">
+<span class="stat-number">{{ availabilityPercent() }}%</span>
+<span class="stat-label">Disponibilidad</span>
+</div>
+<div class="stat-card purple">
+<span class="stat-number">{{ averageRating() }}</span>
+<span class="stat-label">Rating promedio</span>
+</div>
+</div>
+<div class="sections">
+<div class="section">
+<h3>Libros por género</h3>
+@for (item of booksByGenre(); track item.genre) {
+<div class="genre-bar">
+<span class="genre-name">{{ item.genre }}</span>
+<div class="bar-container">
+<div class="bar-fill"
+[style.width.%]="(item.count / totalBooks()) * 100">
+</div>
+</div>
+<span class="genre-count">{{ item.count }}</span>
+</div>
+}
+</div>
+<div class="section">
+<h3>Top 3 mejor valorados</h3>
+@for (book of topRated(); track book.id; let i = $index) {
+<div class="top-item">
+<span class="top-rank">#{{ i + 1 }}</span>
+<div>
+<a [routerLink]="['/libros', book.id]" class="top-title">
+{{ book.title }}
+</a>
+<span class="top-author">{{ book.author }} - {{ book.rating }}/5</span>
+</div>
+</div>
+}
+</div>
+</div>
+</div>
